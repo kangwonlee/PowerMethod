@@ -2,6 +2,7 @@ from typing import Tuple
 
 import numpy as np
 import numpy.linalg as nl
+import numpy.random as nr
 
 
 def power_method(matA:np.ndarray, vecX:np.ndarray=None, epsilon:float=1e-7, n_iter_max:int=100000) -> Tuple[float, np.ndarray, int]:
@@ -27,11 +28,8 @@ def power_method(matA:np.ndarray, vecX:np.ndarray=None, epsilon:float=1e-7, n_it
 
 
 def main1():
-  angle_deg = 30
-  angle_rad = np.deg2rad(angle_deg)
-  c = np.cos(angle_rad)
-  s = np.sin(angle_rad)
-  matA = np.array([[c, -s], [s, c]])
+  matA = nr.random((2, 2))
+  matA = matA @ matA.T
 
   e_val, e_vec, n_iter = power_method(matA)
 
@@ -39,7 +37,9 @@ def main1():
   print("eigenvector =", e_vec)
   print("number of iterations =", n_iter)
 
-  print(nl.eig(matA))
+  w, v = nl.eig(matA)
+  print('w =', w)
+  print('v =', v)
 
 
 def main2():
