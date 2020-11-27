@@ -47,7 +47,9 @@ def main2():
   angle_rad = np.deg2rad(angle_deg)
   c = np.cos(angle_rad)
   s = np.sin(angle_rad)
-  matA = np.array([[c, -s], [s, c]])
+  matA = np.array([
+    [c, -s],
+    [s, c]])
 
   e_val, e_vec, n_iter = power_method(matA)
 
